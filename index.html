@@ -1,743 +1,1168 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="en" data-theme="dark">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-
   <title>Waleed Khadrawy | Teaching Assistant & Mobile Developer</title>
-  <meta name="description"
-    content="Teaching Assistant @ Lotus University (Minia) & Mobile Developer (Flutter/Android). Firebase, REST APIs, Clean Architecture, and enterprise IT experience (Finacle)." />
-  <meta name="theme-color" content="#0b1220" />
+  <meta name="description" content="Teaching Assistant @ Lotus University (Minia) • Mobile Developer (Flutter/Android) • Firebase • REST APIs • Clean Architecture" />
+  <meta name="theme-color" content="#0b1020" />
 
   <!-- OpenGraph -->
   <meta property="og:title" content="Waleed Khadrawy | Teaching Assistant & Mobile Developer" />
-  <meta property="og:description"
-    content="Flutter/Android • Firebase • REST APIs • Clean Architecture • Teaching Assistant @ Lotus University" />
+  <meta property="og:description" content="Flutter/Android • Firebase • REST APIs • Clean Architecture • Teaching Assistant @ Lotus University" />
   <meta property="og:type" content="website" />
-  <meta property="og:image" content="./images/og.png" />
 
-  <!-- css framework (keep your local files to avoid breaking layout) -->
-  <link rel="stylesheet" href="css/bootstrap.min.css" />
-  <link rel="stylesheet" href="css/owl.carousel.min.css" />
-  <link rel="stylesheet" href="css/owl.theme.default.min.css" />
-  <link rel="stylesheet" href="css/lightbox.min.css" />
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 
-  <!-- Font Awesome (newer + icons) -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <!-- Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
 
-  <!-- main css -->
-  <link rel="stylesheet" href="css/style.css" />
+  <!-- Bootstrap (optional but helpful) -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/css/bootstrap.min.css" rel="stylesheet">
 
-  <!-- modernizr -->
-  <script src="js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
-
-  <!-- ===== Senior Visual Upgrade (inline, safe) ===== -->
   <style>
-    :root {
-      --bg: #0b1220;
-      --card: rgba(255, 255, 255, 0.10);
-      --card2: rgba(255, 255, 255, 0.06);
-      --stroke: rgba(255, 255, 255, 0.14);
-      --text: rgba(255, 255, 255, 0.92);
-      --muted: rgba(255, 255, 255, 0.72);
-      --accent: #7c3aed;
-      --accent2: #22c55e;
-      --shadow: 0 20px 60px rgba(0, 0, 0, 0.40);
+    :root{
+      --bg:#070b18;
+      --bg2:#0b1020;
+      --fg:rgba(255,255,255,.92);
+      --muted:rgba(255,255,255,.72);
+      --stroke:rgba(255,255,255,.14);
+      --glass:rgba(255,255,255,.08);
+      --glass2:rgba(255,255,255,.05);
+      --shadow:0 30px 90px rgba(0,0,0,.50);
+      --a:#7c3aed;
+      --b:#22c55e;
+      --c:#60a5fa;
+      --warn:#f59e0b;
+      --ok:#10b981;
+      --danger:#ef4444;
+      --radius:18px;
+      --radius2:14px;
     }
 
-    body {
-      background: var(--bg);
+    html,body{height:100%;}
+    body{
+      margin:0;
+      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+      background: radial-gradient(1200px 700px at 10% 10%, rgba(124,58,237,.18), transparent 60%),
+                  radial-gradient(1200px 700px at 90% 10%, rgba(34,197,94,.12), transparent 60%),
+                  linear-gradient(180deg, var(--bg), var(--bg2));
+      color:var(--fg);
+      overflow-x:hidden;
     }
 
-    /* video */
-    video.bg {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      filter: saturate(1.1) contrast(1.05) brightness(0.75);
-      z-index: 0;
+    /* Smooth scroll */
+    html { scroll-behavior: smooth; }
+
+    /* Top nav */
+    .topbar{
+      position:fixed;
+      top:0; left:0; right:0;
+      z-index:9999;
+      padding:14px 0;
+      transition: all .2s ease;
+    }
+    .topbar.scrolled{
+      background: rgba(10,14,30,.55);
+      border-bottom: 1px solid rgba(255,255,255,.10);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+    .nav-inner{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:14px;
+    }
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      font-weight:900;
+      letter-spacing:.2px;
+      color:var(--fg);
+      text-decoration:none;
+    }
+    .brand .dot{
+      width:10px; height:10px; border-radius:999px;
+      background: linear-gradient(135deg, var(--a), var(--b));
+      box-shadow: 0 0 25px rgba(124,58,237,.45);
+    }
+    .nav-links{
+      display:flex; gap:10px; flex-wrap:wrap; align-items:center;
+    }
+    .nav-links a{
+      color:var(--muted);
+      text-decoration:none;
+      padding:8px 10px;
+      border-radius:999px;
+      border:1px solid transparent;
+      transition:.15s ease;
+      font-weight:600;
+      font-size:13px;
+    }
+    .nav-links a:hover{
+      color:var(--fg);
+      border-color:rgba(255,255,255,.12);
+      background: rgba(255,255,255,.05);
+    }
+    .nav-actions{ display:flex; gap:10px; align-items:center; }
+    .toggle{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      width:42px; height:42px;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.06);
+      color:var(--fg);
+      cursor:pointer;
+      transition:.15s ease;
+    }
+    .toggle:hover{ transform: translateY(-1px); background: rgba(255,255,255,.09); }
+    .btn-pro{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      padding:10px 14px;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.06);
+      color:var(--fg);
+      text-decoration:none;
+      font-weight:700;
+      transition:.15s ease;
+    }
+    .btn-pro:hover{ transform: translateY(-2px); background: rgba(255,255,255,.09); }
+    .btn-pro.primary{
+      border-color: rgba(255,255,255,.18);
+      background: linear-gradient(135deg, rgba(124,58,237,.95), rgba(34,197,94,.80));
+      box-shadow: 0 18px 55px rgba(124,58,237,.25);
     }
 
-    /* overlay + subtle grain */
-    .panel__wrapper {
-      position: relative;
-      z-index: 1;
+    /* Layout helpers */
+    .container{ max-width:1100px; }
+    .section{
+      position:relative;
+      padding: 110px 0 90px 0;
+    }
+    .section-title{
+      display:flex;
+      align-items:flex-end;
+      justify-content:space-between;
+      gap:16px;
+      margin-bottom:18px;
+    }
+    .section-title h2{
+      margin:0;
+      font-weight:900;
+      letter-spacing:.2px;
+      font-size:30px;
+    }
+    .section-title p{
+      margin:0;
+      color:var(--muted);
+      max-width:560px;
+      line-height:1.6;
+      font-weight:500;
+    }
+    .hr{
+      height:1px;
+      background: linear-gradient(90deg, rgba(124,58,237,.55), rgba(34,197,94,.35), transparent);
+      border-radius:999px;
+      margin:18px 0 0 0;
+      opacity:.9;
     }
 
-    .panel__wrapper:before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background:
-        radial-gradient(1200px 600px at 10% 20%, rgba(124, 58, 237, 0.35), transparent 60%),
-        radial-gradient(900px 500px at 90% 30%, rgba(34, 197, 94, 0.22), transparent 60%),
-        linear-gradient(180deg, rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.70));
-      pointer-events: none;
-      z-index: -1;
-    }
-
-    .glass {
-      background: var(--card);
-      border: 1px solid var(--stroke);
-      border-radius: 18px;
+    /* Glass cards */
+    .glass{
+      background: var(--glass);
+      border:1px solid var(--stroke);
+      border-radius: var(--radius);
       box-shadow: var(--shadow);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+    }
+    .glass-soft{
+      background: var(--glass2);
+      border:1px solid rgba(255,255,255,.10);
+      border-radius: var(--radius);
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
     }
 
-    .glass-soft {
-      background: var(--card2);
-      border: 1px solid rgba(255, 255, 255, 0.10);
-      border-radius: 16px;
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
+    /* HERO */
+    .hero{
+      min-height: 100vh;
+      padding-top: 110px;
+      padding-bottom: 60px;
+      display:flex;
+      align-items:center;
+      position:relative;
+      overflow:hidden;
+    }
+    .hero video.bg{
+      position:absolute;
+      inset:0;
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      filter:saturate(1.08) contrast(1.05) brightness(0.65);
+      z-index:0;
+    }
+    #particles-js{
+      position:absolute;
+      inset:0;
+      z-index:1;
+      pointer-events:none;
+    }
+    .mesh-glow{
+      position:absolute;
+      inset:-60px;
+      z-index:1;
+      pointer-events:none;
+      background:
+        radial-gradient(900px 500px at 12% 20%, rgba(124,58,237,.35), transparent 60%),
+        radial-gradient(900px 500px at 88% 30%, rgba(34,197,94,.25), transparent 60%),
+        linear-gradient(180deg, rgba(0,0,0,.40), rgba(0,0,0,.72));
+    }
+    .hero .content{
+      position:relative;
+      z-index:2;
     }
 
-    .hero-kicker {
-      color: var(--muted);
-      letter-spacing: 0.6px;
-      text-transform: uppercase;
-      font-size: 12px;
-      margin-bottom: 8px;
+    .kicker{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding:8px 12px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.06);
+      color:var(--fg);
+      font-size:12px;
+      font-weight:700;
+      letter-spacing:.5px;
+      text-transform:uppercase;
+    }
+    .hero h1{
+      margin:14px 0 10px 0;
+      font-size: 48px;
+      font-weight: 900;
+      line-height: 1.08;
+      letter-spacing: -.6px;
+    }
+    .hero h1 .grad{
+      background: linear-gradient(90deg, rgba(124,58,237,.98), rgba(34,197,94,.85), rgba(96,165,250,.85));
+      -webkit-background-clip:text;
+      background-clip:text;
+      color:transparent;
+    }
+    .hero .sub{
+      margin:0;
+      color:var(--muted);
+      line-height:1.7;
+      font-size:15px;
+      max-width: 720px;
+      font-weight:500;
     }
 
-    .hero-title {
-      color: var(--text);
-      font-weight: 800;
-      line-height: 1.12;
-      margin: 0 0 12px 0;
+    .chips{
+      margin-top:14px;
+      display:flex; gap:8px; flex-wrap:wrap;
+    }
+    .chip{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:7px 10px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.06);
+      color:var(--fg);
+      font-size:12px;
+      font-weight:700;
+    }
+    .chip i{ font-size:16px; opacity:.95; }
+
+    .cta{
+      margin-top: 18px;
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      align-items:center;
     }
 
-    .hero-sub {
-      color: var(--muted);
-      font-size: 15px;
-      line-height: 1.65;
-      margin-bottom: 16px;
+    .stats{
+      margin-top:18px;
+      display:grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap:10px;
+    }
+    .stat{
+      padding:14px 14px;
+      border-radius: var(--radius);
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.06);
+      box-shadow: var(--shadow);
+    }
+    .stat .num{
+      font-size:28px;
+      font-weight:900;
+      line-height:1;
+    }
+    .stat .lbl{
+      margin-top:6px;
+      font-size:12px;
+      color:var(--muted);
+      font-weight:700;
+      letter-spacing:.2px;
     }
 
-    .pill {
-      display: inline-block;
-      padding: 6px 10px;
-      border-radius: 999px;
-      border: 1px solid rgba(255, 255, 255, 0.16);
-      background: rgba(255, 255, 255, 0.06);
-      color: var(--text);
-      margin: 6px 6px 0 0;
-      font-size: 12px;
+    .hero-right{
+      padding:18px;
+    }
+    .avatar{
+      width:220px;
+      height:220px;
+      border-radius:999px;
+      border:2px solid rgba(255,255,255,.22);
+      box-shadow: 0 30px 90px rgba(0,0,0,.55);
+      object-fit:cover;
+    }
+    .quick{
+      margin-top:14px;
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      justify-content:center;
+    }
+    .quick a{
+      text-decoration:none;
+      color:var(--fg);
+      font-weight:800;
+      font-size:12px;
+      padding:10px 12px;
+      border-radius: 14px;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.06);
+      transition:.15s ease;
+    }
+    .quick a:hover{ transform: translateY(-2px); background: rgba(255,255,255,.09); }
+
+    /* ABOUT */
+    .grid2{
+      display:grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap:14px;
+    }
+    .grid2 .card{ padding:18px; }
+    .timeline{
+      display:flex;
+      flex-direction:column;
+      gap:12px;
+      margin-top: 12px;
+    }
+    .tl{
+      padding:14px;
+      border-radius: var(--radius2);
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.06);
+      transition:.15s ease;
+    }
+    .tl:hover{ transform: translateY(-2px); background: rgba(255,255,255,.09); }
+    .tl .top{
+      display:flex; align-items:center; justify-content:space-between; gap:10px;
+    }
+    .tl .role{ font-weight:900; }
+    .tl .date{ color:var(--muted); font-size:12px; font-weight:700; }
+    .tl .org{ color:var(--muted); font-weight:700; margin-top:4px; }
+    .tl .desc{ color:var(--muted); margin-top:8px; line-height:1.55; }
+
+    .teach-list{
+      display:flex; flex-wrap:wrap; gap:8px;
+      margin-top: 10px;
+    }
+    .teach-list .pill{
+      padding:8px 10px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.06);
+      color:var(--fg);
+      font-size:12px;
+      font-weight:800;
     }
 
-    .cta-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
+    /* TECH STACK */
+    .stack-grid{
+      margin-top: 14px;
+      display:grid;
+      grid-template-columns: repeat(6, minmax(0, 1fr));
+      gap:10px;
+    }
+    .stack{
+      padding:14px 12px;
+      border-radius: var(--radius);
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.06);
+      display:flex;
+      align-items:center;
+      gap:10px;
+      font-weight:900;
+      transition: .15s ease;
+      cursor: default;
+    }
+    .stack:hover{ transform: translateY(-3px); background: rgba(255,255,255,.09); }
+    .stack i{ font-size:24px; }
+    .stack span{ font-size:12px; color:var(--fg); }
+
+    /* PROJECTS */
+    .projects-grid{
+      display:grid;
+      grid-template-columns: repeat(3, minmax(0,1fr));
+      gap:14px;
       margin-top: 14px;
     }
-
-    .btn-pro {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 10px 14px;
-      border-radius: 12px;
-      border: 1px solid rgba(255, 255, 255, 0.16);
-      background: rgba(255, 255, 255, 0.08);
-      color: #fff !important;
-      text-decoration: none !important;
-      transition: transform .15s ease, background .15s ease;
+    .proj{
+      padding:16px;
+      border-radius: var(--radius);
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.06);
+      box-shadow: var(--shadow);
+      transition:.15s ease;
+      overflow:hidden;
+      position:relative;
     }
-
-    .btn-pro:hover {
-      transform: translateY(-2px);
-      background: rgba(255, 255, 255, 0.12);
+    .proj:hover{ transform: translateY(-4px); background: rgba(255,255,255,.09); }
+    .proj .shot{
+      width:100%;
+      height:170px;
+      border-radius: var(--radius2);
+      border:1px solid rgba(255,255,255,.10);
+      background: linear-gradient(135deg, rgba(124,58,237,.25), rgba(34,197,94,.18), rgba(96,165,250,.18));
+      overflow:hidden;
+      position:relative;
     }
-
-    .btn-pro.primary {
-      background: linear-gradient(135deg, rgba(124, 58, 237, 0.95), rgba(34, 197, 94, 0.75));
-      border: 1px solid rgba(255, 255, 255, 0.18);
+    .proj .shot img{
+      width:100%; height:100%; object-fit:cover; display:block;
+      filter: saturate(1.05) contrast(1.03);
+      transform: scale(1.03);
     }
-
-    .avatar-wrap img {
-      border-radius: 999px;
-      border: 2px solid rgba(255, 255, 255, 0.25);
-      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.45);
+    .proj h3{
+      margin:12px 0 6px 0;
+      font-weight:900;
+      letter-spacing:.2px;
+      font-size:18px;
     }
-
-    /* section headings look premium */
-    .heading.star h4,
-    .heading.star h2 {
-      color: #fff;
-      font-weight: 800;
-      letter-spacing: .3px;
+    .proj p{
+      margin:0;
+      color:var(--muted);
+      line-height:1.6;
+      font-size:13px;
+      min-height: 58px;
     }
-
-    .heading.star span {
-      background: linear-gradient(90deg, var(--accent), var(--accent2));
-      height: 3px;
-      border-radius: 999px;
-      display: inline-block;
-      width: 80px;
+    .badges{
+      margin-top:10px;
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px;
     }
-
-    /* cards */
-    .info h4 {
-      color: #fff;
-      font-weight: 800;
+    .badge2{
+      padding:6px 10px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.05);
+      color:var(--fg);
+      font-size:11px;
+      font-weight:800;
     }
+    .actions{
+      margin-top:12px;
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+    }
+    .actions a{
+      text-decoration:none;
+      font-weight:900;
+      font-size:12px;
+      padding:10px 12px;
+      border-radius: 14px;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.06);
+      color:var(--fg);
+      transition:.15s ease;
+    }
+    .actions a:hover{ transform: translateY(-2px); background: rgba(255,255,255,.09); }
 
-    .info p {
+    /* CONTACT */
+    .contact-grid{
+      display:grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap:14px;
+      margin-top:14px;
+    }
+    .form-control{
+      background: rgba(255,255,255,.05) !important;
+      border: 1px solid rgba(255,255,255,.12) !important;
+      color: var(--fg) !important;
+      border-radius: 14px !important;
+      box-shadow:none !important;
+    }
+    .form-control::placeholder{ color: rgba(255,255,255,.45) !important; }
+    textarea.form-control{ resize: vertical; }
+    .note{ color: var(--muted); font-size: 12px; margin-top: 8px; }
+
+    /* Footer */
+    .footer{
+      padding: 28px 0 34px 0;
       color: var(--muted);
+      text-align:center;
+      border-top: 1px solid rgba(255,255,255,.08);
+      margin-top: 30px;
     }
 
-    /* contact */
-    .more-info em {
-      color: #fff;
-      font-style: normal;
-      opacity: .9;
+    /* Floating Social */
+    .fab{
+      position:fixed;
+      right:18px;
+      bottom:18px;
+      z-index:9999;
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+      align-items:flex-end;
     }
-
-    /* small */
-    .muted {
-      color: var(--muted);
+    .fab .main{
+      width:54px; height:54px;
+      border-radius: 18px;
+      border:1px solid rgba(255,255,255,.14);
+      background: linear-gradient(135deg, rgba(124,58,237,.95), rgba(34,197,94,.80));
+      box-shadow: 0 20px 60px rgba(124,58,237,.25);
+      display:flex; align-items:center; justify-content:center;
+      cursor:pointer;
     }
+    .fab .main i{ font-size:18px; color:#fff; }
+    .fab .links{
+      display:none;
+      flex-direction:column;
+      gap:10px;
+      margin-bottom:4px;
+    }
+    .fab.open .links{ display:flex; }
+    .fab a{
+      width:48px; height:48px;
+      border-radius: 16px;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.06);
+      display:flex; align-items:center; justify-content:center;
+      color: var(--fg);
+      text-decoration:none;
+      transition:.15s ease;
+    }
+    .fab a:hover{ transform: translateY(-2px); background: rgba(255,255,255,.09); }
 
-    /* reduce motion */
-    @media (prefers-reduced-motion: reduce) {
-      .btn-pro { transition: none; }
-      video.bg { display: none; }
-      .panel__wrapper:before {
-        background: linear-gradient(180deg, rgba(0,0,0,.75), rgba(0,0,0,.85));
-      }
+    /* Reveal */
+    .reveal{ opacity:0; transform: translateY(18px); }
+
+    /* Responsive */
+    @media(max-width: 992px){
+      .hero h1{ font-size: 38px; }
+      .stats{ grid-template-columns: repeat(2, minmax(0,1fr)); }
+      .grid2{ grid-template-columns: 1fr; }
+      .stack-grid{ grid-template-columns: repeat(3, minmax(0,1fr)); }
+      .projects-grid{ grid-template-columns: 1fr; }
+      .contact-grid{ grid-template-columns: 1fr; }
+      .nav-links{ display:none; } /* keep clean on mobile */
     }
   </style>
 </head>
 
 <body>
 
-  <!-- =========================
-       HERO
-  ========================== -->
-  <section class="panel b-blue" id="1">
+  <!-- Topbar -->
+  <header class="topbar" id="topbar">
+    <div class="container">
+      <div class="nav-inner">
+        <a class="brand" href="#home">
+          <span class="dot"></span>
+          Waleed Khadrawy
+        </a>
+
+        <nav class="nav-links" aria-label="Sections">
+          <a href="#about">About</a>
+          <a href="#stack">Tech Stack</a>
+          <a href="#projects">Projects</a>
+          <a href="#contact">Contact</a>
+        </nav>
+
+        <div class="nav-actions">
+          <button class="toggle" id="themeBtn" title="Toggle theme" aria-label="Toggle theme">
+            <i class="fa-solid fa-moon"></i>
+          </button>
+          <a class="btn-pro primary" href="#projects"><i class="fa-solid fa-briefcase"></i> Projects</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero" id="home">
     <video autoplay muted playsinline loop class="bg" poster="./images/video/poster.jpg">
       <source src="./images/video/bg1.mp4" type="video/mp4" />
-      Your browser does not support the video tag.
     </video>
+    <div id="particles-js"></div>
+    <div class="mesh-glow"></div>
 
-    <article class="panel__wrapper">
-      <div class="panel__content">
-        <div class="container">
-          <div class="row">
-            <div class="col-md-10 col-md-offset-1">
-              <div class="home-content glass" style="padding:28px;">
-                <div class="row" style="display:flex; align-items:center; flex-wrap:wrap;">
-                  <div class="col-md-8">
-                    <div class="hero-kicker">
-                      <i class="fa-solid fa-graduation-cap"></i> Teaching Assistant •
-                      <i class="fa-solid fa-mobile-screen"></i> Flutter/Android •
-                      <i class="fa-solid fa-shield-halved"></i> Production-ready delivery
-                    </div>
+    <div class="container content">
+      <div class="row">
+        <div class="col-md-8">
+          <div class="kicker reveal">
+            <i class="fa-solid fa-graduation-cap"></i> Teaching Assistant •
+            <i class="fa-solid fa-mobile-screen"></i> Flutter/Android •
+            <i class="fa-solid fa-layer-group"></i> Clean Architecture
+          </div>
 
-                    <h1 class="hero-title">
-                      Teaching Assistant @ Lotus University<br />
-                      <span style="color: rgba(255,255,255,0.85); font-weight:700;">Mobile Developer (Flutter & Android)</span>
-                    </h1>
+          <h1 class="reveal">
+            Teaching Assistant @ Lotus University<br/>
+            <span class="grad"><span id="typed"></span></span>
+          </h1>
 
-                    <p class="hero-sub">
-                      I build clean, scalable mobile apps with solid UI/UX, authentication, and API integration.
-                      I also teach core CS and software engineering subjects and mentor students on real-world delivery.
-                      <span class="muted">(FinTech ops exposure: Finacle 11 / Infosys)</span>
-                    </p>
+          <p class="sub reveal">
+            I build production-ready mobile apps with strong UI/UX, authentication, and API integration.
+            I also teach core CS and software engineering subjects, and support students with practical labs.
+            <span style="opacity:.9;">(FinTech ops exposure: Finacle 11 / Infosys)</span>
+          </p>
 
-                    <div>
-                      <span class="pill"><i class="fa-solid fa-code"></i> Clean Architecture</span>
-                      <span class="pill"><i class="fa-solid fa-plug"></i> REST APIs</span>
-                      <span class="pill"><i class="fa-brands fa-google"></i> Firebase</span>
-                      <span class="pill"><i class="fa-solid fa-database"></i> SQL Testing</span>
-                      <span class="pill"><i class="fa-brands fa-git-alt"></i> Git/GitHub</span>
-                    </div>
+          <div class="chips reveal" aria-label="Core skills">
+            <span class="chip"><i class="devicon-flutter-plain"></i> Flutter</span>
+            <span class="chip"><i class="devicon-dart-plain"></i> Dart</span>
+            <span class="chip"><i class="devicon-android-plain"></i> Android</span>
+            <span class="chip"><i class="devicon-java-plain"></i> Java</span>
+            <span class="chip"><i class="devicon-kotlin-plain"></i> Kotlin</span>
+            <span class="chip"><i class="devicon-firebase-plain"></i> Firebase</span>
+            <span class="chip"><i class="devicon-mysql-plain"></i> SQL</span>
+            <span class="chip"><i class="devicon-git-plain"></i> Git</span>
+          </div>
 
-                    <div class="cta-row">
-                      <a class="btn-pro primary" href="#3"><i class="fa-solid fa-briefcase"></i> View Projects</a>
-                      <a class="btn-pro" href="#2"><i class="fa-solid fa-user"></i> About</a>
-                      <a class="btn-pro" href="./Waleed-Khadrawy-CV.pdf" target="_blank">
-                        <i class="fa-solid fa-file-arrow-down"></i> Download CV
-                      </a>
-                      <a class="btn-pro" href="#4"><i class="fa-solid fa-paper-plane"></i> Contact</a>
-                    </div>
-                  </div>
+          <div class="cta reveal">
+            <a class="btn-pro primary" href="#projects"><i class="fa-solid fa-rocket"></i> View Featured Work</a>
+            <a class="btn-pro" href="#about"><i class="fa-solid fa-user"></i> About</a>
+            <a class="btn-pro" href="./Waleed-Khadrawy-CV.pdf" target="_blank"><i class="fa-solid fa-file-arrow-down"></i> Download CV</a>
+            <a class="btn-pro" href="#contact"><i class="fa-solid fa-paper-plane"></i> Contact</a>
+          </div>
 
-                  <div class="col-md-4 text-center avatar-wrap">
-                    <a href="./images/mypicture1.jpg" data-lightbox="my_picture" title="Waleed Khadrawy">
-                      <img src="./images/mypicture1.jpg" width="210" height="210" class="img-responsive img-circle"
-                        alt="Waleed Khadrawy" />
-                    </a>
+          <div class="stats reveal" aria-label="Highlights">
+            <div class="stat">
+              <div class="num" data-target="6">0</div>
+              <div class="lbl">Years in Mobile Dev</div>
+            </div>
+            <div class="stat">
+              <div class="num" data-target="12">0</div>
+              <div class="lbl">Apps / Projects</div>
+            </div>
+            <div class="stat">
+              <div class="num" data-target="200">0</div>
+              <div class="lbl">Students Supported</div>
+            </div>
+            <div class="stat">
+              <div class="num" data-target="7">0</div>
+              <div class="lbl">Subjects Taught</div>
+            </div>
+          </div>
 
-                    <div class="glass-soft" style="margin-top:14px; padding:12px;">
-                      <div class="muted" style="font-size:12px; margin-bottom:6px;">Quick Links</div>
-                      <div style="display:flex; gap:10px; justify-content:center; flex-wrap:wrap;">
-                        <a class="btn-pro" href="https://github.com/w3leed" target="_blank"><i class="fa-brands fa-github"></i> GitHub</a>
-                        <a class="btn-pro" href="https://www.linkedin.com/in/waleed-khadrawy-349639168" target="_blank"><i class="fa-brands fa-linkedin"></i> LinkedIn</a>
-                        <a class="btn-pro" href="mailto:waleedkhadroui@gmail.com"><i class="fa-solid fa-envelope"></i> Email</a>
-                        <a class="btn-pro" href="tel:+201156584260"><i class="fa-solid fa-phone"></i> Call</a>
-                      </div>
-                    </div>
-                  </div>
+        </div>
 
-                </div><!-- row -->
-              </div><!-- home-content -->
+        <div class="col-md-4">
+          <div class="glass hero-right reveal text-center">
+            <img class="avatar" src="./images/mypicture1.jpg" alt="Waleed Khadrawy" />
+            <div style="margin-top:12px; font-weight:900; font-size:16px;">Waleed Khadrawy</div>
+            <div style="margin-top:6px; color:var(--muted); font-weight:600;">
+              Minya, Egypt • Flutter/Android
+            </div>
+
+            <div class="quick" aria-label="Quick links">
+              <a href="https://github.com/w3leed" target="_blank"><i class="fa-brands fa-github"></i> GitHub</a>
+              <a href="https://www.linkedin.com/in/waleed-khadrawy-349639168" target="_blank"><i class="fa-brands fa-linkedin"></i> LinkedIn</a>
+              <a href="mailto:waleedkhadroui@gmail.com"><i class="fa-solid fa-envelope"></i> Email</a>
+              <a href="tel:+201156584260"><i class="fa-solid fa-phone"></i> Call</a>
+            </div>
+
+            <div class="hr"></div>
+
+            <div style="margin-top:14px; text-align:left; color:var(--muted); font-size:12px; line-height:1.6;">
+              <b style="color:var(--fg);">Focus:</b> Clean UI • Auth • APIs • Firebase • Maintainable code<br/>
+              <b style="color:var(--fg);">Now:</b> Teaching + shipping mobile solutions
             </div>
           </div>
         </div>
+
       </div>
-    </article>
+    </div>
   </section>
 
-  <!-- =========================
-       ABOUT + EXPERIENCE + TEACHING + SKILLS
-  ========================== -->
-  <section class="panel b-yellow" id="2">
-    <article class="panel__wrapper">
-      <div class="panel__content">
-        <div class="container">
-          <div class="row">
-            <div class="col-md-10 col-md-offset-1">
-
-              <div class="about-content">
-                <div class="heading star">
-                  <h4>About</h4>
-                  <span></span>
-                </div>
-
-                <div class="glass" style="padding:22px; margin-bottom:18px;">
-                  <p class="muted" style="margin:0;">
-                    I combine <b>teaching</b> and <b>engineering</b>. On the academic side, I deliver and support
-                    core subjects (Intro CS, OOP, C#, Discrete Math, Software Engineering, Intro AI). On the industry
-                    side, I have operational experience in banking systems (Finacle), training stakeholders, validating
-                    data migration outputs, and supporting production users.
-                  </p>
-                </div>
-
-                <div class="row">
-                  <!-- Experience -->
-                  <div class="col-md-6">
-                    <div class="experience circle glass-soft" style="padding:18px;">
-                      <h3 class="text-center" style="color:#fff; font-weight:800; margin-top:0;">Experience</h3>
-
-                      <div class="item">
-                        <div class="main">
-                          <h4 style="color:#fff;">Teaching Assistant</h4>
-                          <p class="muted"><i class="fa fa-calendar"></i> Sep 2024 – Present | Lotus University (Minia)</p>
-                        </div>
-                        <p class="muted">Teaching, labs, mentoring, assessments, and structured course delivery.</p>
-                      </div>
-
-                      <div class="item">
-                        <div class="main">
-                          <h4 style="color:#fff;">Project Management IT Specialist (Finacle 11 / Infosys)</h4>
-                          <p class="muted"><i class="fa fa-calendar"></i> Sep 2022 – Sep 2024 | Agriculture Bank of Egypt</p>
-                        </div>
-                        <p class="muted">Staff training, production support, SQL validation, and migration testing.</p>
-                      </div>
-
-                      <div class="item">
-                        <div class="main">
-                          <h4 style="color:#fff;">Backend Developer (Military Service)</h4>
-                          <p class="muted"><i class="fa fa-calendar"></i> Jun 2021 – May 2022 | Ministry of Defence</p>
-                        </div>
-                        <p class="muted">Backend development under restricted scope (details on request where permitted).</p>
-                      </div>
-
-                      <div class="item">
-                        <div class="main">
-                          <h4 style="color:#fff;">Freelance Mobile Developer</h4>
-                          <p class="muted"><i class="fa fa-calendar"></i> 2019 – 2021</p>
-                        </div>
-                        <p class="muted">Education app, WebView conversions, and API-integrated mobile builds.</p>
-                      </div>
-
-                    </div>
-                  </div>
-
-                  <!-- Teaching -->
-                  <div class="col-md-6">
-                    <div class="glass-soft" style="padding:18px;">
-                      <h3 class="text-center" style="color:#fff; font-weight:800; margin-top:0;">Teaching Subjects</h3>
-                      <ul class="muted" style="margin:0; padding-left:18px;">
-                        <li>Introduction to Computer Science</li>
-                        <li>Object-Oriented Programming</li>
-                        <li>C# Programming</li>
-                        <li>Math 1</li>
-                        <li>Discrete Mathematics</li>
-                        <li>Software Engineering</li>
-                        <li>Introduction to AI</li>
-                      </ul>
-
-                      <div style="height:12px;"></div>
-
-                      <h3 class="text-center" style="color:#fff; font-weight:800;">What I Deliver</h3>
-                      <div class="muted" style="display:flex; gap:10px; flex-wrap:wrap; justify-content:center;">
-                        <span class="pill"><i class="fa-solid fa-layer-group"></i> Clean UI</span>
-                        <span class="pill"><i class="fa-solid fa-lock"></i> Auth</span>
-                        <span class="pill"><i class="fa-solid fa-plug"></i> API</span>
-                        <span class="pill"><i class="fa-brands fa-google"></i> Firebase</span>
-                        <span class="pill"><i class="fa-solid fa-bug"></i> Debugging</span>
-                        <span class="pill"><i class="fa-solid fa-file-lines"></i> Documentation</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <!-- Skills (keep your old structure but updated labels) -->
-                <div class="row" style="margin-top:18px;">
-                  <div class="skills">
-                    <div class="circle">
-                      <h3 class="text-center" style="color:#fff; font-weight:800;">Skills</h3>
-                    </div>
-
-                    <div class="col-md-6">
-                      <div class="skill-progress glass-soft" style="padding:18px;">
-                        <div class="prog-content">
-                          <h6 class="muted">Flutter (Dart)</h6>
-                          <div class="progress-custom neon">
-                            <div class="progress-bar-custom" style="width:88%"></div>
-                          </div>
-                        </div>
-
-                        <div class="prog-content">
-                          <h6 class="muted">Android (Java/Kotlin)</h6>
-                          <div class="progress-custom neon">
-                            <div class="progress-bar-custom" style="width:90%"></div>
-                          </div>
-                        </div>
-
-                        <div class="prog-content">
-                          <h6 class="muted">Firebase (Auth / DB / Messaging)</h6>
-                          <div class="progress-custom neon">
-                            <div class="progress-bar-custom" style="width:85%"></div>
-                          </div>
-                        </div>
-
-                        <div class="prog-content">
-                          <h6 class="muted">UI/UX Implementation</h6>
-                          <div class="progress-custom neon">
-                            <div class="progress-bar-custom" style="width:82%"></div>
-                          </div>
-                        </div>
-
-                        <div class="prog-content">
-                          <h6 class="muted">REST APIs + Postman</h6>
-                          <div class="progress-custom neon">
-                            <div class="progress-bar-custom" style="width:84%"></div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div class="col-md-6">
-                      <div class="other_skills glass-soft" style="padding:18px;">
-                        <h4 style="color:#fff; font-weight:800; margin-top:0;">Other Skills</h4>
-                        <ul class="muted" style="columns:2; -webkit-columns:2; margin:0; padding-left:18px;">
-                          <li>OOP</li>
-                          <li>SQL Testing</li>
-                          <li>Git/GitHub</li>
-                          <li>Oracle Basics</li>
-                          <li>Data Structures</li>
-                          <li>Algorithms</li>
-                          <li>C++</li>
-                          <li>C#</li>
-                          <li>HTML/CSS/JS</li>
-                          <li>Linux Basics</li>
-                          <li>Project Support</li>
-                          <li>Documentation</li>
-                        </ul>
-                        <p class="muted" style="margin-top:10px;">
-                          Want this to look even more “product-grade”? I can convert these into badge chips with icons.
-                        </p>
-                      </div>
-                    </div>
-
-                  </div>
-                </div>
-
-              </div><!-- about-content -->
-            </div>
-          </div>
+  <!-- ABOUT -->
+  <section class="section" id="about">
+    <div class="container">
+      <div class="section-title">
+        <div>
+          <h2 class="reveal">About</h2>
+          <div class="hr reveal"></div>
         </div>
+        <p class="reveal">
+          Strong mix of academic teaching + real-world delivery. Comfortable with end-to-end app work: UI, auth, APIs, data, debugging, and clean structure.
+        </p>
       </div>
-    </article>
-  </section>
 
-  <!-- =========================
-       PORTFOLIO
-  ========================== -->
-  <section class="panel b-red" id="3">
-    <article class="panel__wrapper">
-      <div class="panel__content">
-        <div class="container project-section">
-          <div class="heading star">
-            <h2>Featured Projects</h2>
-            <span></span>
-          </div>
+      <div class="grid2">
+        <div class="glass card reveal">
+          <h3 style="margin:0; font-weight:900;">Experience Timeline</h3>
+          <div class="timeline">
 
-          <div class="owl-carousel owl-theme projects-content">
-
-            <!-- Project 1 -->
-            <div class="cardContainer item">
-              <div class="card glass-soft" style="padding:16px;">
-                <a href="images/project-item-01.jpg" data-lightbox="image-1">
-                  <div class="box-img img1" style="border-radius:14px;"></div>
-                </a>
-                <div class="info" style="padding-top:12px;">
-                  <h4>Odoo Task Manager</h4>
-                  <p>Token auth, protected routes, and Odoo backend controllers for task management.</p>
-                  <div class="primary-button" style="display:flex; gap:10px; flex-wrap:wrap;">
-                    <a class="btn-pro" href="https://github.com/w3leed/Odoo-Task-Manager---Full-Stack-Web--main" target="_blank">
-                      <i class="fa-brands fa-github"></i> GitHub
-                    </a>
-                    <a class="btn-pro" href="#4"><i class="fa-solid fa-paper-plane"></i> Contact</a>
-                  </div>
-                </div>
+            <div class="tl tilt">
+              <div class="top">
+                <div class="role"><i class="fa-solid fa-graduation-cap"></i> Teaching Assistant</div>
+                <div class="date">Sep 2024 — Present</div>
               </div>
+              <div class="org">Lotus University (Minia) — Faculty of Computers & AI</div>
+              <div class="desc">Labs, sections, mentoring, assessments, and course delivery.</div>
             </div>
 
-            <!-- Project 2 -->
-            <div class="cardContainer item">
-              <div class="card glass-soft" style="padding:16px;">
-                <a href="images/project-item-03.jpg" data-lightbox="image-2">
-                  <div class="box-img img3" style="border-radius:14px;"></div>
-                </a>
-                <div class="info" style="padding-top:12px;">
-                  <h4>ChatApp (Firebase)</h4>
-                  <p>Android chat app with authentication and real-time messaging.</p>
-                  <div class="primary-button" style="display:flex; gap:10px; flex-wrap:wrap;">
-                    <a class="btn-pro" href="https://github.com/w3leed/ChatApp" target="_blank">
-                      <i class="fa-brands fa-github"></i> GitHub
-                    </a>
-                  </div>
-                </div>
+            <div class="tl tilt">
+              <div class="top">
+                <div class="role"><i class="fa-solid fa-building-columns"></i> IT Specialist (Finacle 11 / Infosys)</div>
+                <div class="date">Sep 2022 — Sep 2024</div>
               </div>
+              <div class="org">Agriculture Bank of Egypt (Minya)</div>
+              <div class="desc">Staff training, production support, SQL validation, and migration testing.</div>
             </div>
 
-            <!-- Project 3 -->
-            <div class="cardContainer item">
-              <div class="card glass-soft" style="padding:16px;">
-                <a href="images/project-item-04.jpg" data-lightbox="image-3">
-                  <div class="box-img img4" style="border-radius:14px;"></div>
-                </a>
-                <div class="info" style="padding-top:12px;">
-                  <h4>Doctory</h4>
-                  <p>Clinic booking flows with a practical mobile app structure.</p>
-                  <div class="primary-button" style="display:flex; gap:10px; flex-wrap:wrap;">
-                    <a class="btn-pro" href="https://github.com/w3leed/Doctory" target="_blank">
-                      <i class="fa-brands fa-github"></i> GitHub
-                    </a>
-                  </div>
-                </div>
+            <div class="tl tilt">
+              <div class="top">
+                <div class="role"><i class="fa-solid fa-shield-halved"></i> Backend Developer (Military Service)</div>
+                <div class="date">Jun 2021 — May 2022</div>
               </div>
+              <div class="org">Ministry of Defence</div>
+              <div class="desc">Backend development under restricted scope (details on request where permitted).</div>
             </div>
 
-            <!-- Project 4 -->
-            <div class="cardContainer item">
-              <div class="card glass-soft" style="padding:16px;">
-                <a href="images/project-item-05.jpg" data-lightbox="image-4">
-                  <div class="box-img img5" style="border-radius:14px;"></div>
-                </a>
-                <div class="info" style="padding-top:12px;">
-                  <h4>Flutter Apps</h4>
-                  <p>API Siara (car rental) + El-Dera3 Bayez (PlayStation room booking).</p>
-                  <div class="primary-button" style="display:flex; gap:10px; flex-wrap:wrap;">
-                    <a class="btn-pro" href="#4"><i class="fa-solid fa-paper-plane"></i> Ask for Demo</a>
-                  </div>
-                </div>
+            <div class="tl tilt">
+              <div class="top">
+                <div class="role"><i class="fa-solid fa-briefcase"></i> Freelance Mobile Developer</div>
+                <div class="date">2019 — 2021</div>
               </div>
-            </div>
-
-            <!-- Keep your Play Store cards if you want -->
-            <div class="cardContainer item">
-              <div class="card glass-soft" style="padding:16px;">
-                <a href="images/project-item-02.jpg" data-lightbox="image-5">
-                  <div class="box-img img2" style="border-radius:14px;"></div>
-                </a>
-                <div class="info" style="padding-top:12px;">
-                  <h4>Published Apps</h4>
-                  <p>Selected apps available on Google Play Store.</p>
-                  <div class="primary-button" style="display:flex; gap:10px; flex-wrap:wrap;">
-                    <a class="btn-pro" href="https://play.google.com/store/apps/developer?id=Waleed+Khedr+Khadrawy" target="_blank">
-                      <i class="fa-brands fa-google-play"></i> Play Store
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-          </div><!-- owl-carousel -->
-        </div>
-      </div>
-    </article>
-  </section>
-
-  <!-- =========================
-       CONTACT
-  ========================== -->
-  <section class="panel b-green" id="4">
-    <article class="panel__wrapper">
-      <div class="panel__content">
-        <div class="container">
-          <div class="row">
-            <div class="col-md-10 col-md-offset-1">
-
-              <div class="contact-content">
-                <div class="heading star">
-                  <h4>Contact</h4>
-                  <span></span>
-                </div>
-
-                <div class="row">
-                  <div class="col-md-8">
-                    <div class="contat-form glass" style="padding:18px;">
-                      <!-- Mailto form (works without backend) -->
-                      <form id="contactForm">
-                        <fieldset>
-                          <input name="name" type="text" class="form-control" id="name" placeholder="Your Name" required />
-                        </fieldset>
-                        <fieldset>
-                          <input name="email" type="email" class="form-control" id="email" placeholder="Email" required />
-                        </fieldset>
-                        <fieldset>
-                          <textarea name="message" rows="6" class="form-control" id="message"
-                            placeholder="Message" required></textarea>
-                        </fieldset>
-                        <fieldset>
-                          <button type="submit" id="form-submit" class="btn btn-pro primary" style="border:0;">
-                            <i class="fa-solid fa-paper-plane"></i> Send Message
-                          </button>
-                        </fieldset>
-                      </form>
-                      <p class="muted" style="margin-top:10px; font-size:12px;">
-                        This form opens your email client (no backend needed).
-                      </p>
-                    </div>
-                  </div>
-
-                  <div class="col-md-4">
-                    <div class="more-info glass-soft" style="padding:18px;">
-                      <p class="muted" style="margin-bottom:10px;">
-                        Fast response. Clear delivery. If you want a Flutter/Android app, API integration, or UI build — message me.
-                      </p>
-
-                      <p style="margin:0;">
-                        <em>
-                          <i class="fa-solid fa-phone"></i> <a href="tel:+201156584260" style="color:#fff;">+20 11 5658 4260</a><br />
-                          <i class="fa-solid fa-location-dot"></i> Minya, Egypt<br />
-                          <i class="fa-solid fa-envelope"></i> <a href="mailto:waleedkhadroui@gmail.com" style="color:#fff;">waleedkhadroui@gmail.com</a>
-                        </em>
-                      </p>
-
-                      <div style="height:12px;"></div>
-
-                      <div style="display:flex; gap:10px; flex-wrap:wrap;">
-                        <a class="btn-pro" href="https://github.com/w3leed" target="_blank"><i class="fa-brands fa-github"></i> GitHub</a>
-                        <a class="btn-pro" href="https://www.linkedin.com/in/waleed-khadrawy-349639168" target="_blank"><i class="fa-brands fa-linkedin"></i> LinkedIn</a>
-                      </div>
-
-                    </div>
-                  </div>
-                </div>
-
-              </div><!-- contact-content -->
-            </div>
-
-            <div class="col-md-12">
-              <div class="footer text-center" style="padding:14px 0;">
-                <p class="muted" style="margin:0;">Copyright &copy; <span id="yr"></span> Waleed Khadrawy</p>
-              </div>
+              <div class="org">Multiple clients</div>
+              <div class="desc">Education app, WebView conversions, and API-integrated builds.</div>
             </div>
 
           </div>
         </div>
+
+        <div class="glass-soft card reveal">
+          <h3 style="margin:0; font-weight:900;">Teaching Subjects</h3>
+          <div class="teach-list" aria-label="Subjects">
+            <span class="pill">Intro to CS</span>
+            <span class="pill">OOP</span>
+            <span class="pill">C#</span>
+            <span class="pill">C++</span>
+            <span class="pill">Math 1</span>
+            <span class="pill">Discrete Math</span>
+            <span class="pill">Software Engineering</span>
+            <span class="pill">Intro to AI</span>
+          </div>
+
+          <div class="hr" style="margin-top:16px;"></div>
+
+          <h3 style="margin:16px 0 10px 0; font-weight:900;">What I Deliver</h3>
+          <div class="teach-list">
+            <span class="pill"><i class="fa-solid fa-palette"></i> Clean UI</span>
+            <span class="pill"><i class="fa-solid fa-lock"></i> Auth</span>
+            <span class="pill"><i class="fa-solid fa-plug"></i> API Integration</span>
+            <span class="pill"><i class="fa-brands fa-google"></i> Firebase</span>
+            <span class="pill"><i class="fa-solid fa-bug"></i> Debugging</span>
+            <span class="pill"><i class="fa-solid fa-file-lines"></i> Documentation</span>
+          </div>
+
+          <div class="hr" style="margin-top:16px;"></div>
+
+          <div style="margin-top:14px; color:var(--muted); line-height:1.7; font-weight:600;">
+            <b style="color:var(--fg);">Availability:</b> Open to travel across governorates.<br/>
+            <b style="color:var(--fg);">Military:</b> Completed (June 2022).
+          </div>
+        </div>
       </div>
-    </article>
+    </div>
   </section>
 
-  <!-- =========================
-       NAV (keep your circular menu)
-  ========================== -->
-  <nav id="navbar" class="circular-menu circular-menu-left" aria-label="Main navigation">
-    <a class="floating-btn" role="button" aria-label="Open menu"
-      onclick="document.getElementById('navbar').classList.toggle('active');">
-      <i class="fa fa-bars"></i>
-    </a>
-    <ul class="items-wrapper links">
-      <li class="menu-item active-link"><a href="#1" class="nav__link c-blue fa fa-home" aria-label="Home"></a></li>
-      <li class="menu-item"><a href="#2" class="fa fa-user scrolly" aria-label="About"></a></li>
-      <li class="menu-item"><a href="#3" class="fa fa-briefcase" aria-label="Projects"></a></li>
-      <li class="menu-item nav__list"><a href="#4" class="fa fa-envelope" aria-label="Contact"></a></li>
-    </ul>
-  </nav>
+  <!-- TECH STACK -->
+  <section class="section" id="stack">
+    <div class="container">
+      <div class="section-title">
+        <div>
+          <h2 class="reveal">Tech Stack</h2>
+          <div class="hr reveal"></div>
+        </div>
+        <p class="reveal">
+          Languages + frameworks aligned with my track (Mobile + Teaching + Enterprise support).
+        </p>
+      </div>
 
-  <aside id="socialMedia" class="circular-menu" aria-label="Social links">
-    <a class="floating-btn" role="button" aria-label="Open social links"
-      onclick="document.getElementById('socialMedia').classList.toggle('active');">
-      <i class="fa fa-link"></i>
-    </a>
+      <div class="stack-grid">
+        <div class="stack tilt reveal"><i class="devicon-dart-plain"></i><span>Dart</span></div>
+        <div class="stack tilt reveal"><i class="devicon-flutter-plain"></i><span>Flutter</span></div>
+        <div class="stack tilt reveal"><i class="devicon-android-plain"></i><span>Android</span></div>
+        <div class="stack tilt reveal"><i class="devicon-java-plain"></i><span>Java</span></div>
+        <div class="stack tilt reveal"><i class="devicon-kotlin-plain"></i><span>Kotlin</span></div>
+        <div class="stack tilt reveal"><i class="devicon-firebase-plain"></i><span>Firebase</span></div>
 
-    <ul class="items-wrapper">
-      <li class="menu-item">
-        <a href="https://www.linkedin.com/in/waleed-khadrawy-349639168" target="_blank" class="fa fa-linkedin-square"
-          aria-label="LinkedIn"></a>
-      </li>
-      <li class="menu-item">
-        <a href="https://github.com/w3leed" target="_blank" class="fa fa-github" aria-label="GitHub"></a>
-      </li>
-      <li class="menu-item">
-        <a href="https://play.google.com/store/apps/developer?id=Waleed+Khedr+Khadrawy" target="_blank" class="fa fa-google"
-          aria-label="Google Play"></a>
-      </li>
-      <li class="menu-item">
-        <a href="mailto:waleedkhadroui@gmail.com" class="fa fa-envelope" aria-label="Email"></a>
-      </li>
-    </ul>
-  </aside>
+        <div class="stack tilt reveal"><i class="devicon-csharp-plain"></i><span>C#</span></div>
+        <div class="stack tilt reveal"><i class="devicon-cplusplus-plain"></i><span>C++</span></div>
+        <div class="stack tilt reveal"><i class="devicon-python-plain"></i><span>Python</span></div>
+        <div class="stack tilt reveal"><i class="devicon-mysql-plain"></i><span>SQL</span></div>
+        <div class="stack tilt reveal"><i class="devicon-oracle-original"></i><span>Oracle</span></div>
+        <div class="stack tilt reveal"><i class="devicon-linux-plain"></i><span>Linux</span></div>
 
-  <!-- scripts -->
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-  <script>
-    window.jQuery || document.write('<script src="js/vendor/jquery-1.11.2.min.js"><\/script>')
-  </script>
+        <div class="stack tilt reveal"><i class="devicon-git-plain"></i><span>Git</span></div>
+        <div class="stack tilt reveal"><i class="devicon-github-original"></i><span>GitHub</span></div>
+        <div class="stack tilt reveal"><i class="devicon-html5-plain"></i><span>HTML5</span></div>
+        <div class="stack tilt reveal"><i class="devicon-css3-plain"></i><span>CSS3</span></div>
+        <div class="stack tilt reveal"><i class="devicon-javascript-plain"></i><span>JavaScript</span></div>
+        <div class="stack tilt reveal"><i class="fa-solid fa-sitemap"></i><span>OOP / DS / Algo</span></div>
+      </div>
+    </div>
+  </section>
 
-  <script src="js/vendor/bootstrap.min.js"></script>
-  <script src="js/vendor/owl.carousel.min.js"></script>
-  <script src="js/vendor/lightbox.min.js"></script>
-  <script src="js/main.js"></script>
+  <!-- PROJECTS -->
+  <section class="section" id="projects">
+    <div class="container">
+      <div class="section-title">
+        <div>
+          <h2 class="reveal">Featured Projects</h2>
+          <div class="hr reveal"></div>
+        </div>
+        <p class="reveal">
+          Clean, structured builds with clear UX + real integration work. (Replace screenshots with your real ones for maximum impact.)
+        </p>
+      </div>
 
-  <!-- mailto form handler + year -->
+      <div class="projects-grid">
+
+        <div class="proj tilt reveal">
+          <div class="shot">
+            <!-- Replace with your actual screenshot path -->
+            <img src="./images/project-item-01.jpg" alt="Odoo Task Manager" onerror="this.style.display='none'">
+          </div>
+          <h3>Odoo Task Manager</h3>
+          <p>Task management UI + Odoo backend controllers with token auth, protected routes, and clean API flow.</p>
+          <div class="badges">
+            <span class="badge2">Odoo</span><span class="badge2">Web</span><span class="badge2">Auth</span><span class="badge2">API</span>
+          </div>
+          <div class="actions">
+            <a href="https://github.com/w3leed/Odoo-Task-Manager---Full-Stack-Web--main" target="_blank"><i class="fa-brands fa-github"></i> Repo</a>
+          </div>
+        </div>
+
+        <div class="proj tilt reveal">
+          <div class="shot">
+            <img src="./images/project-item-03.jpg" alt="ChatApp" onerror="this.style.display='none'">
+          </div>
+          <h3>ChatApp (Firebase)</h3>
+          <p>Android chat app with Firebase authentication and real-time messaging. Practical structure for scaling.</p>
+          <div class="badges">
+            <span class="badge2">Android</span><span class="badge2">Firebase</span><span class="badge2">Realtime</span>
+          </div>
+          <div class="actions">
+            <a href="https://github.com/w3leed/ChatApp" target="_blank"><i class="fa-brands fa-github"></i> Repo</a>
+          </div>
+        </div>
+
+        <div class="proj tilt reveal">
+          <div class="shot">
+            <img src="./images/project-item-04.jpg" alt="Doctory" onerror="this.style.display='none'">
+          </div>
+          <h3>Doctory</h3>
+          <p>Clinic booking flows with solid app structure and pragmatic UX for appointments and navigation.</p>
+          <div class="badges">
+            <span class="badge2">Android</span><span class="badge2">Booking</span><span class="badge2">DB</span>
+          </div>
+          <div class="actions">
+            <a href="https://github.com/w3leed/Doctory" target="_blank"><i class="fa-brands fa-github"></i> Repo</a>
+          </div>
+        </div>
+
+        <div class="proj tilt reveal">
+          <div class="shot">
+            <img src="./images/project-item-05.jpg" alt="Face Detection" onerror="this.style.display='none'">
+          </div>
+          <h3>Face Detection</h3>
+          <p>Android face detection demo with real-time feedback UI and clean camera handling approach.</p>
+          <div class="badges">
+            <span class="badge2">Android</span><span class="badge2">CV</span><span class="badge2">Camera</span>
+          </div>
+          <div class="actions">
+            <a href="https://github.com/w3leed/FaceDetection" target="_blank"><i class="fa-brands fa-github"></i> Repo</a>
+          </div>
+        </div>
+
+        <div class="proj tilt reveal">
+          <div class="shot">
+            <img src="./images/project-item-02.jpg" alt="AleppoGrill" onerror="this.style.display='none'">
+          </div>
+          <h3>AleppoGrill</h3>
+          <p>Food ordering app concept (Otlob-style): menus, cart, checkout flow, and UI structure.</p>
+          <div class="badges">
+            <span class="badge2">Android</span><span class="badge2">E-commerce</span><span class="badge2">UI/UX</span>
+          </div>
+          <div class="actions">
+            <a href="https://github.com/w3leed/AleppoGrill3" target="_blank"><i class="fa-brands fa-github"></i> Repo</a>
+          </div>
+        </div>
+
+        <div class="proj tilt reveal">
+          <div class="shot">
+            <!-- Put Flutter app screenshots here if you have them -->
+            <img src="./images/project-item-06.jpg" alt="Flutter Apps" onerror="this.style.display='none'">
+          </div>
+          <h3>Flutter Apps</h3>
+          <p>API Siara (car rental) + El-Dera3 Bayez (PlayStation room booking). Add screenshots + short demo for best impact.</p>
+          <div class="badges">
+            <span class="badge2">Flutter</span><span class="badge2">Dart</span><span class="badge2">API</span>
+          </div>
+          <div class="actions">
+            <a href="#contact"><i class="fa-solid fa-paper-plane"></i> Ask for Demo</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="section" id="contact">
+    <div class="container">
+      <div class="section-title">
+        <div>
+          <h2 class="reveal">Contact</h2>
+          <div class="hr reveal"></div>
+        </div>
+        <p class="reveal">
+          Fast response. Clear delivery. If you need Flutter/Android app work, UI implementation, or Firebase/API integration—send a message.
+        </p>
+      </div>
+
+      <div class="contact-grid">
+        <div class="glass reveal" style="padding:18px;">
+          <form id="contactForm">
+            <div class="form-group">
+              <input class="form-control" id="name" placeholder="Your Name" required />
+            </div>
+            <div class="form-group">
+              <input class="form-control" id="email" placeholder="Email" type="email" required />
+            </div>
+            <div class="form-group">
+              <textarea class="form-control" id="message" rows="6" placeholder="Message" required></textarea>
+            </div>
+            <button class="btn-pro primary" type="submit" style="border:0;">
+              <i class="fa-solid fa-paper-plane"></i> Send Message
+            </button>
+            <div class="note">This opens your email client (no backend needed).</div>
+          </form>
+        </div>
+
+        <div class="glass-soft reveal" style="padding:18px;">
+          <h3 style="margin:0; font-weight:900;">Direct</h3>
+          <div style="margin-top:10px; color:var(--muted); line-height:1.8; font-weight:600;">
+            <div><i class="fa-solid fa-phone"></i> <a href="tel:+201156584260" style="color:var(--fg); text-decoration:none;">+20 11 5658 4260</a></div>
+            <div><i class="fa-solid fa-envelope"></i> <a href="mailto:waleedkhadroui@gmail.com" style="color:var(--fg); text-decoration:none;">waleedkhadroui@gmail.com</a></div>
+            <div><i class="fa-solid fa-location-dot"></i> Minya, Egypt</div>
+          </div>
+
+          <div class="hr" style="margin-top:16px;"></div>
+
+          <div style="margin-top:14px; display:flex; gap:10px; flex-wrap:wrap;">
+            <a class="btn-pro" href="https://github.com/w3leed" target="_blank"><i class="fa-brands fa-github"></i> GitHub</a>
+            <a class="btn-pro" href="https://www.linkedin.com/in/waleed-khadrawy-349639168" target="_blank"><i class="fa-brands fa-linkedin"></i> LinkedIn</a>
+            <a class="btn-pro" href="https://play.google.com/store/apps/developer?id=Waleed+Khedr+Khadrawy" target="_blank"><i class="fa-brands fa-google-play"></i> Play Store</a>
+          </div>
+
+          <div class="hr" style="margin-top:16px;"></div>
+
+          <div style="margin-top:14px; color:var(--muted); line-height:1.7; font-weight:600;">
+            <b style="color:var(--fg);">Note:</b> Put your real project screenshots in <code>./images/</code> and link demos for a “wow” factor.
+          </div>
+        </div>
+      </div>
+
+      <div class="footer">
+        <div>© <span id="year"></span> Waleed Khadrawy • Built for impact</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Floating Social -->
+  <div class="fab" id="fab">
+    <div class="links" aria-label="Social links">
+      <a href="mailto:waleedkhadroui@gmail.com" title="Email"><i class="fa-solid fa-envelope"></i></a>
+      <a href="https://github.com/w3leed" target="_blank" title="GitHub"><i class="fa-brands fa-github"></i></a>
+      <a href="https://www.linkedin.com/in/waleed-khadrawy-349639168" target="_blank" title="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
+      <a href="tel:+201156584260" title="Call"><i class="fa-solid fa-phone"></i></a>
+    </div>
+    <div class="main" id="fabBtn" title="Quick actions"><i class="fa-solid fa-bolt"></i></div>
+  </div>
+
+  <!-- Libraries -->
+  <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.16"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vanilla-tilt@1.8.1/dist/vanilla-tilt.min.js"></script>
+
   <script>
     (function () {
-      document.getElementById('yr').textContent = new Date().getFullYear();
+      // Year
+      document.getElementById('year').textContent = new Date().getFullYear();
 
-      var form = document.getElementById('contactForm');
-      form.addEventListener('submit', function (e) {
+      // Topbar blur on scroll
+      const topbar = document.getElementById('topbar');
+      const onScroll = () => topbar.classList.toggle('scrolled', window.scrollY > 10);
+      window.addEventListener('scroll', onScroll, { passive: true });
+      onScroll();
+
+      // Floating actions
+      const fab = document.getElementById('fab');
+      document.getElementById('fabBtn').addEventListener('click', () => fab.classList.toggle('open'));
+
+      // Theme toggle (dark-only by design, but keep toggle for future)
+      const themeBtn = document.getElementById('themeBtn');
+      themeBtn.addEventListener('click', () => {
+        // For now keep dark; if you later want light mode I’ll add it properly.
+        fab.classList.add('open');
+      });
+
+      // Mailto form
+      document.getElementById('contactForm').addEventListener('submit', function(e){
         e.preventDefault();
+        const name = document.getElementById('name').value.trim();
+        const email = document.getElementById('email').value.trim();
+        const message = document.getElementById('message').value.trim();
 
-        var name = document.getElementById('name').value.trim();
-        var email = document.getElementById('email').value.trim();
-        var message = document.getElementById('message').value.trim();
-
-        var subject = encodeURIComponent("Portfolio Contact — " + name);
-        var body = encodeURIComponent(
+        const subject = encodeURIComponent("Portfolio Contact — " + name);
+        const body = encodeURIComponent(
           "Name: " + name + "\n" +
           "Email: " + email + "\n\n" +
           "Message:\n" + message
         );
-
         window.location.href = "mailto:waleedkhadroui@gmail.com?subject=" + subject + "&body=" + body;
       });
+
+      // Particles
+      if (window.particlesJS) {
+        particlesJS("particles-js", {
+          particles: {
+            number: { value: 70, density: { enable: true, value_area: 900 } },
+            color: { value: ["#ffffff", "#a78bfa", "#34d399", "#60a5fa"] },
+            shape: { type: "circle" },
+            opacity: { value: 0.35, random: true },
+            size: { value: 2.2, random: true },
+            line_linked: { enable: true, distance: 140, color: "#ffffff", opacity: 0.10, width: 1 },
+            move: { enable: true, speed: 1.2, direction: "none", out_mode: "out" }
+          },
+          interactivity: {
+            detect_on: "canvas",
+            events: {
+              onhover: { enable: true, mode: "grab" },
+              onclick: { enable: true, mode: "push" },
+              resize: true
+            },
+            modes: { grab: { distance: 160, line_linked: { opacity: 0.25 } }, push: { particles_nb: 2 } }
+          },
+          retina_detect: true
+        });
+      }
+
+      // Typed
+      if (window.Typed) {
+        new Typed("#typed", {
+          strings: [
+            "Flutter Developer",
+            "Android Developer",
+            "Software Developer",
+            "Firebase • REST APIs • Clean Architecture"
+          ],
+          typeSpeed: 42,
+          backSpeed: 18,
+          backDelay: 1100,
+          loop: true,
+          smartBackspace: true
+        });
+      }
+
+      // Tilt
+      if (window.VanillaTilt) {
+        VanillaTilt.init(document.querySelectorAll(".tilt"), {
+          max: 7,
+          speed: 450,
+          glare: true,
+          "max-glare": 0.18
+        });
+      }
+
+      // GSAP reveals + counters
+      const prefersReduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      if (window.gsap && window.ScrollTrigger && !prefersReduced) {
+        gsap.registerPlugin(ScrollTrigger);
+
+        gsap.utils.toArray(".reveal").forEach(el => {
+          gsap.to(el, {
+            opacity: 1,
+            y: 0,
+            duration: 0.9,
+            ease: "power3.out",
+            scrollTrigger: { trigger: el, start: "top 86%", toggleActions: "play none none reverse" }
+          });
+        });
+      } else {
+        // fallback: show everything
+        document.querySelectorAll('.reveal').forEach(el => {
+          el.style.opacity = 1;
+          el.style.transform = 'translateY(0)';
+        });
+      }
+
+      // Counters
+      const counters = document.querySelectorAll(".num[data-target]");
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (!entry.isIntersecting) return;
+          const el = entry.target;
+          const target = parseInt(el.getAttribute("data-target"), 10) || 0;
+
+          let startTime = null;
+          const duration = 900;
+
+          const tick = (ts) => {
+            if (!startTime) startTime = ts;
+            const p = Math.min((ts - startTime) / duration, 1);
+            const val = Math.floor(target * p);
+            el.textContent = val;
+            if (p < 1) requestAnimationFrame(tick);
+            else el.textContent = target + "+";
+          };
+
+          requestAnimationFrame(tick);
+          io.unobserve(el);
+        });
+      }, { threshold: 0.35 });
+
+      counters.forEach(c => io.observe(c));
+
     })();
   </script>
-
 </body>
 </html>
